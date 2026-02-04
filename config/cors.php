@@ -19,7 +19,7 @@ return [
 
     'paths' => ['api/*', 'api/chat'], // <-- Agrega explícitamente
     'allowed_methods' => ['*'],
-    'allowed_origins' => ['http://localhost:4200'],
+    'allowed_origins' => ['http://localhost:4200','https://ecommercedislicoresags.vercel.app/'],
     'allowed_origins_patterns' => [],
     'allowed_headers' => ['*'],
     'exposed_headers' => [],

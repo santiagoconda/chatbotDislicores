@@ -1,5 +1,5 @@
-   <x-chat-bot/>
-   <x-layout/>
+   <!-- <x-chat-bot/>
+   <x-layout/> -->
      <section class="hero">
     <div class="hero-content">
      <h1 class="hero-title">

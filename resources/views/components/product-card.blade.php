@@ -1,13 +1,15 @@
 @vite('resources/css/app.css')
-<div
-    class="group relative bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100/50 flex flex-col backdrop-blur-sm">
+<div class="card-products">
 
     <!-- Imagen con efecto parallax -->
-    <div class="relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+    <div class="relative overflow-hidden  from-gray-50 to-gray-100">
 
-        <img src="{{ $product->images->first()?->image_path
-        ? asset('storage/' . $product->images->first()->image_path)
-        : asset('images/no-image.png') }}">
+        <div class="w-full h-56 rounded-xl flex items-center justify-center overflow-hidden">
+            <img src="{{ $product->images->first()?->image_path? asset('storage/' . $product->images->first()->image_path)
+        : asset('images/no-image.png') }}" class="max-h-full max-w-full object-contain">
+        </div>
+
+
         <!-- Overlay gradient sutil -->
         <div
             class="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -81,28 +83,31 @@
     <div class="p-6 flex flex-col flex-1">
 
         <!-- Categoría / Marca -->
-        <div class="flex justify-between items-center text-xs uppercase tracking-wider mb-3">
+        <!-- <div class="flex justify-between items-center text-xs uppercase tracking-wider mb-3">
             <span class="text-gray-500 font-semibold bg-gray-100 px-3 py-1 rounded-full">
                 {{ $product->category->name ?? 'Sin categoría' }}
             </span>
             <span class="text-indigo-600 font-bold">
                 {{ $product->brand->name ?? '' }}
             </span>
-        </div>
+        </div> -->
 
         <!-- Nombre del producto -->
-        <h3
-            class="text-lg font-bold text-gray-900 line-clamp-2 mb-2 group-hover:text-indigo-600 transition-colors duration-200 leading-snug">
+        <h3 class="title-product">
             {{ $product->name }}
         </h3>
 
         <!-- Volumen -->
-        @if($product->volume)
-        <p class="text-sm text-gray-600 mb-3 font-medium">📦 {{ $product->volume }}</p>
-        @endif
+
 
         <!-- Specs con íconos mejorados -->
         <div class="flex flex-wrap gap-2 mb-4">
+            @if($product->volume)
+            <span
+                class="inline-flex items-center gap-1 px-3 py-1 bg-purple-50 text-purple-700 text-xs font-semibold rounded-full border border-purple-200">
+                {{ $product->volume }}📦</span>
+            @endif
+
             @if($product->alcohol_percentage)
             <span
                 class="inline-flex items-center gap-1 px-3 py-1 bg-purple-50 text-purple-700 text-xs font-semibold rounded-full border border-purple-200">
@@ -155,7 +160,7 @@
         <div class="mt-auto mb-4">
 
             <div class="flex items-baseline gap-3 mb-1">
-                <span class="text-3xl font-black text-gray-900 tracking-tight">
+                <span class="text-2xl text-gray-200 tracking-tight">
                     ${{ number_format($product->discount_price ?? $product->price, 2) }}
                 </span>
 
@@ -183,11 +188,11 @@
         <div class="flex gap-3">
 
             @if($product->stock > 0)
-            <button onclick="addToCart({{ $product->id }}, '{{ addslashes($product->name) }}', {{ $product->price }}, '{{ $product->image ?? '' }}')"
-
-                class="flex-1 relative bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700
-                hover:to-indigo-800 text-white text-sm font-bold py-3.5 px-6 rounded-xl transition-all duration-200
-                shadow-lg shadow-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/40 hover:-translate-y-0.5 flex
+            <button
+                onclick="addToCart({{ $product->id }}, '{{ addslashes($product->name) }}', {{ $product->price }}, '{{ $product->image ?? '' }}')"
+                class="flex-1 relative bg-gradient-to-r from-[#d96314] to-[#E7B605] hover:from-[#d96314]
+                hover:from-[#d96314] text-white text-sm font-bold py-3.5 px-6 rounded-xl transition-all duration-200
+                shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex
                 items-center justify-center gap-2">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -237,7 +242,7 @@
 
 </div>
 <script>
-    /**
+/**
  * Add to Cart Functionality
  * Include this script ONLY ONCE in your layout
  */
@@ -250,7 +255,9 @@ if (typeof window.cartFunctionsLoaded === 'undefined') {
     function getCSRFToken() {
         const token = document.querySelector('meta[name="csrf-token"]');
         if (!token) {
-            console.error('CSRF token not found. Add <meta name="csrf-token" content="{{ csrf_token() }}"> to your layout head.');
+            console.error(
+                'CSRF token not found. Add <meta name="csrf-token" content="{{ csrf_token() }}"> to your layout head.'
+            );
             return null;
         }
         return token.content;
@@ -281,14 +288,14 @@ if (typeof window.cartFunctionsLoaded === 'undefined') {
             });
 
             const data = await response.json();
-
+            // console.log(data);
             if (data.success) {
                 // Show success notification
                 showNotification('✅ Producto agregado al carrito', 'success');
-                
+
                 // Update cart badge
                 updateCartBadge(data.cart_count);
-                
+
                 return true;
             } else {
                 showNotification('❌ Error al agregar producto', 'error');
@@ -300,14 +307,13 @@ if (typeof window.cartFunctionsLoaded === 'undefined') {
             return false;
         }
     }
-
     // Update cart badge in header
     window.updateCartBadge = function(count) {
         const badge = document.getElementById('cart-badge');
         if (badge) {
             badge.textContent = count;
             badge.style.display = count > 0 ? 'flex' : 'none';
-            
+
             // Animate badge
             badge.style.animation = 'none';
             setTimeout(() => {
@@ -326,7 +332,7 @@ if (typeof window.cartFunctionsLoaded === 'undefined') {
         const notification = document.createElement('div');
         notification.className = `cart-notification cart-notification-${type}`;
         notification.textContent = message;
-        
+
         document.body.appendChild(notification);
 
         // Show with animation

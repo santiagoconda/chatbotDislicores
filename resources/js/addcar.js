@@ -19,7 +19,6 @@ const request = async (url, body = {}) => {
         },
         body: JSON.stringify(body)
     });
-
     return res.json();
 };
 

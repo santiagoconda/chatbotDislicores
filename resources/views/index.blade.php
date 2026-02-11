@@ -1,6 +1,4 @@
-
-<x-layout/>
-
+<x-layout.app/>
 
 <div class="cart-container">
 
@@ -34,17 +32,14 @@
 
                     {{-- IMAGE --}}
                     <img
-                        src="{{ $item['image'] ?? '/img/no-image.png' }}"
+                        src="{{asset('storage/'.$item['image'] ?? '/img/no-image.png')}}"
                         class="item-img"
                     >
-
 
                     {{-- INFO --}}
                     <div class="item-details">
                         <h3>{{ $item['name'] }}</h3>
                         <p>$ {{ number_format($item['price'],0,',','.') }}</p>
-
-
                         {{-- QTY --}}
                         <div class="qty-controls">
 

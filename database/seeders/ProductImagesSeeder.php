@@ -53,7 +53,7 @@ class ProductImagesSeeder extends Seeder
             [
                 'id' => 5,
                 'product_id' => 2,
-                'image_path' => 'ecommerce/aguardiente/antioqueno/tapazul.webp',
+                'image_path' => 'https://iexltvimpvjwsrdslhfb.supabase.co/storage/v1/object/public/ecommerce/aguardiente/antioqueno/tapazul.webp',
                 'alt_text' => null,
                 'is_primary' => 0,
                 'order' => 0,

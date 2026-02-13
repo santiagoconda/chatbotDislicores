@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>DISLICORESAGS</title>
-    @vite('resources/css/layouts.css')
+    @vite('resources/css/app.css')
 
 </head>
 <body>

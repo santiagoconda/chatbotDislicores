@@ -21,6 +21,6 @@ class chatbot extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.chatbot');
+        return view('components.chat-bot');
     }
 }

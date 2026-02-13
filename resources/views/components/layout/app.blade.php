@@ -7,8 +7,7 @@
 
     <title>DISLICORESAGS</title>
     @vite('resources/css/app.css')
-        <x-chatBot>
-    </x-chatBot>
+    <x-chat-bot/>
 
 </head>
 <body>

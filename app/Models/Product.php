@@ -87,6 +87,15 @@ class Product extends Model
         return $this->images()->where('is_primary', true)->first()?->image_path;
     }
 
+        public function getImageUrlAttribute()
+    {
+        if ($this->getPrimaryImageAttribute) {
+            return env('SUPABASE_STORAGE_URL') . '/' . $this->primaryImage->image_path;
+        }
+        
+        return asset('images/no-image.png');
+    }
+
     public function getDiscountPercentageAttribute()
     {
         if ($this->discount_price && $this->price > 0) {

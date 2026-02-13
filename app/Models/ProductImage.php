@@ -25,4 +25,9 @@ class ProductImage extends Model
     {
         return $this->belongsTo(Product::class);
     }
+        // Accessor para URL completa
+    public function getUrlAttribute()
+    {
+        return env('SUPABASE_STORAGE_URL') . '/' . $this->image_path;
+    }
 }

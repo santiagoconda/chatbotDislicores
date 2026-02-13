@@ -5,8 +5,7 @@
     <div class="relative overflow-hidden  from-gray-50 to-gray-100">
 
         <div class="w-full h-56 rounded-xl flex items-center justify-center overflow-hidden">
-            <img src="{{ $product->images->first()?->image_path? asset('storage/' . $product->images->first()->image_path)
-        : asset('images/no-image.png') }}" class="max-h-full max-w-full object-contain">
+            <img src="{{ $product->images->first()?->image_path}}" class="max-h-full max-w-full object-contain">
         </div>
 
 

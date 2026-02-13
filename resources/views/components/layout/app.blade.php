@@ -7,10 +7,11 @@
 
     <title>DISLICORESAGS</title>
     @vite('resources/css/app.css')
+        <x-chatBot>
+    </x-chatBot>
 
 </head>
 <body>
-    <x-chatBot/>
     <header class="main-header">
         <div class="nav-container">
             <!-- Logo -->

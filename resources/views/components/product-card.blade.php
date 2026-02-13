@@ -21,21 +21,21 @@
             @if($product->is_new)
             <span
                 class="px-3 py-1.5 text-xs font-bold bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-full shadow-lg backdrop-blur-sm animate-pulse">
-                ✨ Nuevo
+                 Nuevo
             </span>
             @endif
 
             @if($product->is_on_sale && $product->discount_price)
             <span
                 class="px-3 py-1.5 text-xs font-bold bg-gradient-to-r from-rose-500 to-pink-600 text-white rounded-full shadow-lg backdrop-blur-sm">
-                🔥 -{{ round((($product->price - $product->discount_price) / $product->price) * 100) }}%
+                 -{{ round((($product->price - $product->discount_price) / $product->price) * 100) }}%
             </span>
             @endif
 
             @if($product->is_featured)
             <span
                 class="px-3 py-1.5 text-xs font-bold bg-gradient-to-r from-violet-600 to-purple-700 text-white rounded-full shadow-lg backdrop-blur-sm">
-                ⭐ Destacado
+                 Destacado
             </span>
             @endif
 
@@ -44,13 +44,13 @@
         <!-- Acciones rápidas (wishlist, quick view) -->
         <div
             class="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
-            <button
+            <button 
                 class="w-10 h-10 bg-white/90 backdrop-blur-md rounded-full shadow-lg hover:bg-white hover:scale-110 transition-all duration-200 flex items-center justify-center">
                 <svg class="w-5 h-5 text-gray-700 hover:text-red-500 transition-colors" fill="none"
                     stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
+                </svg> 
             </button>
             <button
                 class="w-10 h-10 bg-white/90 backdrop-blur-md rounded-full shadow-lg hover:bg-white hover:scale-110 transition-all duration-200 flex items-center justify-center">
@@ -210,7 +210,7 @@
             </button>
             @endif
 
-            <a href="{{ route('products.show', $product->id) }}"
+            <a href="{{ route('products.show', $product->slug) }}"
                 class="px-5 py-3.5 text-sm font-bold border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center gap-2 hover:-translate-y-0.5">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

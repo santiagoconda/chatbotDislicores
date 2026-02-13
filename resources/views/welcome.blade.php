@@ -15,12 +15,12 @@
 
 <body>
     <div class="demo-content">
-        <div class="demo-card">
+        <!-- <div class="demo-card">
             <h2>DESCUBRE LA EXELENCIA EN CADA BOTELLA</h2>
             <p>Llevamos el sabor de la celebración hasta tu mesa, para que cada momento con familia y amigos sea inolvidable</p>
-        </div>
+        </div> -->
         <div class="demo-card">
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div class="features-grid">
                 @foreach($products as $product)
                 @include('components.product-card')
                 @endforeach

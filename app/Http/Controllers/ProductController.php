@@ -16,8 +16,8 @@ class ProductController extends Controller
     /**
      * Listar todos los productos con filtros
      */
-    public function todoslosproductos(){
-        $product = Product::all();
+    public function todoslosproductos($slug){
+        $product = Product::where($slug)->get();
         return $product;
     }
     public function index(Request $request)
@@ -113,11 +113,11 @@ class ProductController extends Controller
      */
     public function show($slug)
     {
+
         try {
-            $product = Product::with(['category', 'brand', 'images', 'tags', 'reviews.user', 'variants'])
+            $product = Product::with(['category', 'brand', 'images', 'tags', 'reviews.user'])
                 ->where('slug', $slug)
                 ->firstOrFail();
-
             // Incrementar vistas
             $product->increment('views');
 

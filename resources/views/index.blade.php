@@ -1,15 +1,9 @@
 <x-layout.app/>
-
 <div class="cart-container">
-
-    {{-- ================= HEADER ================= --}}
     <div class="cart-header">
         <h1 class="cart-title">🛒 Mi Carrito</h1>
         <p class="cart-subtitle">Revisa tus productos antes de realizar el pedido</p>
     </div>
-
-
-    {{-- ================= EMPTY ================= --}}
     @if(empty($cart))
         <div class="empty-cart">
             <h2>Tu carrito está vacío</h2>
@@ -18,36 +12,20 @@
                 Ver productos
             </a>
         </div>
-
-
-    {{-- ================= CART ================= --}}
     @else
         <div class="cart-content">
-
-            {{-- ITEMS --}}
             <div class="cart-items">
-
                 @foreach($cart as $item)
                 <div class="cart-item" data-id="{{ $item['id'] }}">
-
-                    {{-- IMAGE --}}
                     <img
                         src="{{asset('storage/'.$item['image'] ?? '/img/no-image.png')}}"
-                        class="item-img"
-                    >
+                        class="item-img">
 
-                    {{-- INFO --}}
                     <div class="item-details">
                         <h3>{{ $item['name'] }}</h3>
                         <p>$ {{ number_format($item['price'],0,',','.') }}</p>
-                        {{-- QTY --}}
                         <div class="qty-controls">
-
-                            <button
-                                class="qty-btn"
-                                data-qty
-                                data-id="{{ $item['id'] }}"
-                                data-amount="-1">
+                            <button class="qty-btn" data-qty data-id="{{ $item['id'] }}" data-amount="-1">
                                 −
                             </button>
 
@@ -72,7 +50,6 @@
                     </div>
 
 
-                    {{-- ACTIONS --}}
                     <div class="item-actions">
 
                         <span class="item-total">
@@ -91,14 +68,8 @@
                 @endforeach
 
             </div>
-
-
-
-            {{-- ================= SUMMARY ================= --}}
             <div class="cart-summary">
-
                 <h2>Total</h2>
-
                 <p class="summary-total">
                     $ <span id="cart-total">{{ number_format($total,0,',','.') }}</span>
                 </p>
@@ -119,8 +90,6 @@
 </div>
 
 
-
-{{-- ================= MODAL ================= --}}
 <div id="checkoutModal" class="modal">
 
     <div class="modal-overlay"></div>
@@ -197,6 +166,7 @@
     max-width: 1280px;
     margin: 0 auto;
     padding: 2rem 1.5rem;
+    
 }
 
 .cart-header {
@@ -218,7 +188,7 @@
 .cart-title svg {
     width: 40px;
     height: 40px;
-    color: #d4af37;
+    color: #d47e37;
 }
 
 .cart-subtitle {
@@ -230,11 +200,8 @@
 .empty-cart {
     text-align: center;
     padding: 4rem 2rem;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    /* background: white; */
 }
-
 .empty-cart-icon {
     width: 120px;
     height: 120px;
@@ -266,9 +233,13 @@
 
 /* Cart Content */
 .cart-content {
+      color:#ffff;
+
     display: grid;
     grid-template-columns: 1fr 400px;
     gap: 2rem;
+
+
 }
 
 @media (max-width: 1024px) {
@@ -282,18 +253,17 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    
 }
 
 .cart-item {
-    background: white;
-    border-radius: 16px;
-    padding: 1.5rem;
-    display: grid;
-    grid-template-columns: 100px 1fr auto;
-    gap: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 3rem;
+  margin-bottom: 2rem;
 }
 
 .cart-item:hover {
@@ -330,7 +300,8 @@
 }
 
 .item-details {
-    flex: 1;
+    display:flex;
+    
 }
 
 .item-name {
@@ -424,13 +395,18 @@
 
 /* Cart Summary */
 .cart-summary {
-    background: white;
-    border-radius: 16px;
-    padding: 2rem;
+        background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 3rem;
+  margin-bottom: 2rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     height: fit-content;
     position: sticky;
     top: 2rem;
+
 }
 
 .summary-title {

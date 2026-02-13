@@ -22,13 +22,13 @@
 
             <!-- Navigation Desktop -->
             <nav class="header-nav" id="mainNav">
-                <a href="/" class="nav-link active">
+                <a href="" class="nav-link active">
                     <span>Inicio</span>
                 </a>
                 <a href="/productos" class="nav-link">
                     <span>Productos</span>
                 </a>
-                <a href="/ofertas" class="nav-link">
+                <a href="{{route('on.sale')}}" class="nav-link">
                     <span>Ofertas</span>
                     <span class="nav-badge">Nuevo</span>
                 </a>

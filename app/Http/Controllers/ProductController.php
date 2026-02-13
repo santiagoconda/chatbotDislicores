@@ -130,13 +130,14 @@ class ProductController extends Controller
                 ->limit(4)
                 ->get();
 
-            return response()->json([
-                'success' => true,
-                'data' => [
-                    'product' => $product,
-                    'related_products' => $relatedProducts
-                ]
-            ]);
+            // return response()->json([
+            //     'success' => true,
+            //     'data' => [
+            //         'product' => $product,
+            //         'related_products' => $relatedProducts
+            //     ]
+            // ]);
+            return view('components.detalle-producto', compact('product','relatedProducts'));
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,

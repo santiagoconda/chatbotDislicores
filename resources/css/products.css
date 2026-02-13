@@ -222,6 +222,12 @@ body {
   gap: 2.5rem;
   margin-top: 3rem;
 }
+.features-grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
 
 .feature-card {
   text-align: center;

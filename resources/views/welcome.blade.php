@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <title>DISLICORES AGS</title> -->
-    @vite('resources/css/app.css')
+    <!-- @vite('resources/css/app.css') -->
 
 </head>
 <header>
@@ -19,14 +19,14 @@
             <h2>DESCUBRE LA EXELENCIA EN CADA BOTELLA</h2>
             <p>Llevamos el sabor de la celebración hasta tu mesa, para que cada momento con familia y amigos sea inolvidable</p>
         </div> -->
-        <div class="demo-card">
-            <div class="features-grid">
+        <!-- <div class="demo-card"> -->
+            <div class="features-grid-cards">
                 @foreach($products as $product)
                 @include('components.product-card')
                 @endforeach
             </div>
-        </div>
-        <div class="demo-card">
+        <!-- </div> -->
+        <!-- <div class="demo-card"> -->
             <div class="container">
                 <div class="features-grid">
                     <div class="feature-card">
@@ -74,7 +74,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        <!-- </div> -->
 
     </div>
 

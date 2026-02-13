@@ -157,8 +157,7 @@
 
 
 
-{{-- VITE --}}
-@vite('resources/js/addcar.js')
+
 
 <style>
 /* Cart Styles */

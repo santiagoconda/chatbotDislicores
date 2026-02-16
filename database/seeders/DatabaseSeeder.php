@@ -11,8 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Desactivar foreign key checks para evitar errores de orden
-        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
 
         $this->call([
             CategoriesSeeder::class,
@@ -23,8 +22,6 @@ class DatabaseSeeder extends Seeder
             ProductTagsSeeder::class,
         ]);
 
-        // Reactivar foreign key checks
-        \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $this->command->info('✅ Base de datos poblada exitosamente!');
     }

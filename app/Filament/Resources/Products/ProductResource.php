@@ -69,10 +69,10 @@ class ProductResource extends Resource
 
         Select::make('age')
             ->options([
-                'joven' => 'Joven',
-                'añejo' => 'Añejo',
-                'reserva' => 'Reserva',
-                'extra_añejo' => 'Extra Añejo',
+                '1' => 'Joven',
+                '2' => 'Añejo',
+                '3' => 'Reserva',
+                '4' => 'Extra Añejo',
             ]),
 
         TextInput::make('origin_country')

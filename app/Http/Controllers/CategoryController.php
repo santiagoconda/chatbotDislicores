@@ -47,7 +47,7 @@ class CategoryController extends Controller
                 ->with(['brand', 'images'])
                 ->active()
                 ->inStock()
-                ->paginate(12);
+                ->paginate(3);
 
             // return response()->json([
             //     'success' => true,

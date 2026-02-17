@@ -299,7 +299,7 @@ class ProductController extends Controller
                 ->active()
                 ->inStock()
                 ->limit(8)
-                ->get();
+                ->paginate(3);
 
             // return response()->json([
             //     'success' => true,

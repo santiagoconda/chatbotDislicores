@@ -45,12 +45,7 @@
             <!-- Actions -->
             <div class="header-actions">
                 <!-- Search Button -->
-                <button class="action-btn search-btn" aria-label="Buscar">
-                    <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <path d="m21 21-4.35-4.35"></path>
-                    </svg>
-                </button>
+
 
                 <!-- Cart -->
                 <a href="{{ route('cart.index') }}" class="action-btn cart-btn" aria-label="Carrito de compras">
@@ -59,7 +54,7 @@
                         <circle cx="20" cy="21" r="1"></circle>
                         <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                     </svg>
-                    <span class="cart-badge" id="cart-badge">3</span>
+                    <!-- <span class="cart-badge" id="cart-badge">3</span> -->
                 </a>
 
                 <!-- Mobile Menu Toggle -->
@@ -84,7 +79,7 @@
             </nav>
         </div>
     </header>
-
+    <x-hero/>
     <main class="flex-1 container mx-auto py-8">
         {{ $slot }}
     </main>
@@ -151,17 +146,7 @@
                 </div>
 
                 <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Categorías</h4>
-                        @foreach($categories as $category)
-                        <a href="{{ route('category.show', $category->slug) }}">{{ $category->name }}</a>
-                        @endforeach
-                        <!-- <a href="#">Whisky</a>
-                        <a href="#">Ron</a>
-                        <a href="#">Vodka</a>
-                        <a href="#">Gin</a>
-                        <a href="#">Tequila</a> -->
-                    </div>
+
 
                     <div class="footer-column">
                         <h4>Ayuda</h4>

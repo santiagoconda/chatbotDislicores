@@ -90,7 +90,7 @@ class ProductController extends Controller
 
     $query->orderBy($sortBy, $sortOrder);
 
-    $products = $query->paginate(12);
+    $products = $query->paginate(3);
 
             // return response()->json([
             //     'success' => true,
@@ -130,14 +130,14 @@ class ProductController extends Controller
                 ->limit(4)
                 ->get();
 
-            // return response()->json([
-            //     'success' => true,
-            //     'data' => [
-            //         'product' => $product,
-            //         'related_products' => $relatedProducts
-            //     ]
-            // ]);
-            return view('components.detalle-producto', compact('product','relatedProducts'));
+            return response()->json([
+                'success' => true,
+                'data' => [
+                    'product' => $product,
+                    'related_products' => $relatedProducts
+                ]
+            ]);
+            // return view('components.detalle-producto', compact('product','relatedProducts'));
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
@@ -301,10 +301,11 @@ class ProductController extends Controller
                 ->limit(8)
                 ->get();
 
-            return response()->json([
-                'success' => true,
-                'data' => $products
-            ]);
+            // return response()->json([
+            //     'success' => true,
+            //     'data' => $products
+            // ]);
+            return view('components.on-sale', compact('products'));
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,

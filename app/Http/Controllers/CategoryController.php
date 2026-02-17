@@ -19,10 +19,11 @@ class CategoryController extends Controller
                 ->orderBy('order')
                 ->get();
 
-            return response()->json([
-                'success' => true,
-                'data' => $categories
-            ]);
+            // return response()->json([
+            //     'success' => true,
+            //     'data' => $categories
+            // ]);
+            return view('components.layout.app', compact('categories'));
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
@@ -48,13 +49,14 @@ class CategoryController extends Controller
                 ->inStock()
                 ->paginate(12);
 
-            return response()->json([
-                'success' => true,
-                'data' => [
-                    'category' => $category,
-                    'products' => $products
-                ]
-            ]);
+            // return response()->json([
+            //     'success' => true,
+            //     'data' => [
+            //         'category' => $category,
+            //         'products' => $products
+            //     ]
+            // ]);
+            return view('components.categorias', compact('category', 'products'));
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,

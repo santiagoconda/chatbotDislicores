@@ -23,7 +23,7 @@ Route::prefix('products')->group(function () {
 // Categorías
 Route::prefix('categories')->group(function () {
     Route::get('/', [CategoryController::class, 'index']); // Listar categorías
-    Route::get('/{slug}', [CategoryController::class, 'show']); // Ver categoría con productos
+    Route::get('/{slug}', [CategoryController::class, 'show'])->name('category.show'); // Ver categoría con productos
 });
 
 // Marcas

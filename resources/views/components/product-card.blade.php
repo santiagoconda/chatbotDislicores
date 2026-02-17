@@ -46,7 +46,7 @@
 
 /* Colores de fondo */
 .card-cyan .background-shape {
-    background: rgba(177, 100, 0, 0.05);
+    background: rgba(177, 100, 0, 0.35);
 }
 
 /* Tarjeta blanca principal */

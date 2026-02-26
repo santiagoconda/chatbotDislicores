@@ -8,7 +8,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\CartController;
 
-Route::get('/', [ProductController::class, 'index'])->name('index'); // Listar productos con filtros
+Route::get('/', [ProductController::class, 'todoslosproductos'])->name('index'); // Listar productos con filtros
 Route::post('/chat', [ChatbotController::class, 'sendMessage']);
 // Route::get('/products.show', function () {
 //     return view('welcome');
@@ -18,7 +18,7 @@ Route::prefix('products')->group(function () {
     Route::get('/featured', [ProductController::class, 'featured']); // Productos destacados
     Route::get('/on-sale', [ProductController::class, 'onSale'])->name('on.sale'); // Productos en oferta
     Route::get('/new-arrivals', [ProductController::class, 'newArrivals']); // Productos nuevos
-    Route::get('/info/{slug}', [ProductController::class, 'show'])->name('products.show'); // Ver producto específico
+    Route::get('/info', [ProductController::class, 'show'])->name('products.show'); // Ver producto específico
 });
 // Categorías
 Route::prefix('categories')->group(function () {

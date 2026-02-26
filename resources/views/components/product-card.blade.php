@@ -464,7 +464,7 @@
                     <div class="flex gap-3">
                         @if($product->stock > 0)
                         <button
-                            onclick="addToCart({{ $product->id }}, '{{ addslashes($product->name) }}', {{ $product->price }}, '{{ $product->image ?? '' }}')"
+                            onclick="addToCart({{ $product->id }}, '{{ addslashes($product->name) }}', {{ $product->price }}, '{{ $product->images->first()?->image_path }}')"
                             class="flex-1 relative bg-gradient-to-r from-[#d96314] to-[#E7B605] hover:from-[#d96314] text-white text-sm font-bold py-3.5 px-6 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center gap-2">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

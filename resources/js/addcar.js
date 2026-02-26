@@ -1,31 +1,23 @@
-/* ======================================================
-   CART.JS  —  Dislicores Ecommerce Cart System
-   ====================================================== */
 
 console.log('🛒 Cart module loaded');
 
-/* =========================================
-   Helpers
-========================================= */
-
 const csrf = document.querySelector('meta[name="csrf-token"]').content;
 
-const request = async (url, body = {}) => {
+async function request(url, data) {
     const res = await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': csrf
+            'Accept': 'application/json',
+            'X-CSRF-TOKEN': document
+                .querySelector('meta[name="csrf-token"]')
+                .content
         },
-        body: JSON.stringify(body)
+        body: JSON.stringify(data)
     });
-    return res.json();
-};
 
-
-/* =========================================
-   Notifications
-========================================= */
+    return await res.json();
+}
 
 function showNotification(message, type = 'success') {
     const old = document.querySelector('.cart-notification');
@@ -101,6 +93,7 @@ async function removeItem(id) {
 ========================================= */
 
 async function updateQuantity(id, qty) {
+    console.log('Updating quantity:', id, qty);
     const data = await request('/cart/update', {
         product_id: id,
         quantity: qty
@@ -184,11 +177,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Quantity buttons
+    // document.querySelectorAll('[data-qty]').forEach(btn => {
+    //     btn.addEventListener('click', () => {
+    //         updateQuantity(btn.dataset.id, btn.dataset.qty);
+    //     });
+    // });
     document.querySelectorAll('[data-qty]').forEach(btn => {
-        btn.addEventListener('click', () => {
-            updateQuantity(btn.dataset.id, btn.dataset.qty);
-        });
+    btn.addEventListener('click', () => {
+        const id = btn.dataset.id;
+        const input = document.querySelector(`[data-qty-input][data-id="${id}"]`);
+        const currentQty = parseInt(input.value);
+        const amount = parseInt(btn.dataset.amount); // +1 o -1
+        const newQty = currentQty + amount;
+
+        if (newQty < 1) return;
+
+        input.value = newQty;
+        updateQuantity(id, newQty); // 👈 asegúrate de pasar el nuevo valor, no el viejo
     });
+});
 
     // Clear cart
     document.getElementById('clearCartBtn')

@@ -16,9 +16,21 @@ class ProductController extends Controller
     /**
      * Listar todos los productos con filtros
      */
-    public function todoslosproductos($slug){
-        $product = Product::where($slug)->get();
-        return $product;
+    public function todoslosproductos(){
+        try {
+             $products = Product::with(['category', 'brand', 'images', 'tags'])
+                ->active()
+                ->inStock()
+                ->paginate(3);
+            return view('welcome', compact('products'));
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al obtener productos',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+
     }
     public function index(Request $request)
     {

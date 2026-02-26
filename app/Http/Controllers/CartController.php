@@ -15,6 +15,7 @@ class CartController extends Controller
         $total = $this->calculateTotal($cart);
         return view('index', compact('cart', 'total'));
     }
+
     public function addCar(Request $request){
         // dd($request());
         $request->validate([
@@ -45,6 +46,7 @@ class CartController extends Controller
         ]);
         // return redirect()->back()->with('success', 'Producto agregado al carrito');
     }
+
     public function update(Request $request)
     {
         $request->validate([
@@ -65,7 +67,9 @@ class CartController extends Controller
             return response()->json([
                 'success' => true,
                 'item_total' => number_format($itemTotal, 2),
-                'cart_total' => number_format($total, 2)
+                'cart_total' => number_format($total, 2),
+                'cart_count' => array_sum(array_column($cart, 'quantity')) // 👈 faltaba esto
+
             ]);
         }
 

@@ -25,10 +25,10 @@
 
             <!-- Navigation Desktop -->
             <nav class="header-nav" id="mainNav">
-                <a href="" class="nav-link active">
+                <a href="{{ route('index') }}" class="nav-link active">
                     <span>Inicio</span>
                 </a>
-                <a href="" class="nav-link">
+                <a href="{{ route('index') }}" class="nav-link">
                     <span>Productos</span>
                 </a>
                 <a href="{{route('on.sale')}}" class="nav-link">
@@ -54,7 +54,7 @@
                         <circle cx="20" cy="21" r="1"></circle>
                         <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                     </svg>
-                    <!-- <span class="cart-badge" id="cart-badge">3</span> -->
+                    <span class="cart-badge" id="cart-badge">0</span>
                 </a>
 
                 <!-- Mobile Menu Toggle -->
@@ -69,8 +69,8 @@
         <!-- Mobile Navigation -->
         <div class="mobile-nav" id="mobileNav">
             <nav class="mobile-nav-links">
-                <a href="" class="mobile-nav-link active">Inicio</a>
-                <a href="" class="mobile-nav-link">Productos</a>
+                <a href="{{ route('index') }}" class="mobile-nav-link active">Inicio</a>
+                <a href="{{ route('index') }}" class="mobile-nav-link">Productos</a>
                 <a href="{{route('on.sale')}}" class="mobile-nav-link">
                     Ofertas
                     <span class="nav-badge-mobile">Nuevo</span>
@@ -194,22 +194,22 @@ function toggleMobileMenu() {
 }
 
 // Add scroll effect
-let lastScroll = 0;
-const header = document.querySelector('.main-header');
+// let lastScroll = 0;
+// const header = document.querySelector('.main-header');
 
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
+// window.addEventListener('scroll', () => {
+//     const currentScroll = window.pageYOffset;
 
-    if (currentScroll > 50) {
-        header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.3)';
-        header.style.background = 'rgba(10, 10, 10, 0.95)';
-    } else {
-        header.style.boxShadow = 'none';
-        header.style.background = 'rgba(10, 10, 10, 0.8)';
-    }
+//     if (currentScroll > 50) {
+//         header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.3)';
+//         header.style.background = 'rgba(10, 10, 10, 0.95)';
+//     } else {
+//         header.style.boxShadow = 'none';
+//         header.style.background = 'rgba(10, 10, 10, 0.8)';
+//     }
 
-    lastScroll = currentScroll;
-});
+//     lastScroll = currentScroll;
+// });
 </script>
 
 </html>

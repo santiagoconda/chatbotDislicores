@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\chatbot;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class hero extends Component
+class chat extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class hero extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.hero');
+        return view('components.chatbot.chat');
     }
 }

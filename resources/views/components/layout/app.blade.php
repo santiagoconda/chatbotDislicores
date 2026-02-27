@@ -9,7 +9,7 @@
     <title>DISLICORESAGS</title>
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
-    <x-chat-bot />
+    <x-chatbot.chat />
 
 </head>
 
@@ -79,7 +79,7 @@
             </nav>
         </div>
     </header>
-    <x-hero/>
+    <x-layout.hero/>
     <main class="flex-1 container mx-auto py-8">
         {{ $slot }}
     </main>

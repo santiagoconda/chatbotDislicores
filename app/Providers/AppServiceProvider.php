@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
-        View::composer('components.hero', function ($view) {
+        View::composer('components.layout.hero', function ($view) {
         try {
             $categories = Category::where('is_active', true)
                 ->orderBy('order')

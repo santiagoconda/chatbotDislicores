@@ -13,7 +13,7 @@ class CartController extends Controller
         $cart = Session::get('cart', []);
         // dd($cart);
         $total = $this->calculateTotal($cart);
-        return view('index', compact('cart', 'total'));
+        return view('components.carrito.index', compact('cart', 'total'));
     }
 
     public function addCar(Request $request){
@@ -142,7 +142,33 @@ class CartController extends Controller
     /**
      * Generar mensaje de WhatsApp
      */
-    public function generateWhatsAppMessage(Request $request)
+
+
+    /**
+     * Calcular total del carrito
+     */
+    private function calculateTotal($cart)
+    {
+        $total = 0;
+        foreach ($cart as $item) {
+            $total += $item['price'] * $item['quantity'];
+        }
+        return $total;
+    }
+
+    /**
+     * Contar items en el carrito
+     */
+    private function getCartCount($cart)
+    {
+        $count = 0;
+        foreach ($cart as $item) {
+            $count += $item['quantity'];
+        }
+        return $count;
+    }
+
+        public function generateWhatsAppMessage(Request $request)
     {
         // dd($request);
         $request->validate([
@@ -188,41 +214,19 @@ class CartController extends Controller
 
         $message .= "\n✅ Pedido generado automáticamente";
 
-        // Número de WhatsApp del negocio (cambiar por el tuyo)
-        $whatsappNumber = '573126151253'; // Formato: código país + número sin +
+        $whatsappNumber = '573126151253'; 
         
         // Codificar mensaje para URL
         $encodedMessage = urlencode($message);
         $whatsappUrl = "https://wa.me/{$whatsappNumber}?text={$encodedMessage}";
+        $whatsappAppUrl = "whatsapp://send?phone={$whatsappNumber}&text={$encodedMessage}";
+    
 
         return response()->json([
             'success' => true,
             'whatsapp_url' => $whatsappUrl,
+            'whatsapp_app_url' => $whatsappAppUrl,
             'message' => 'Pedido preparado correctamente'
         ]);
-    }
-
-    /**
-     * Calcular total del carrito
-     */
-    private function calculateTotal($cart)
-    {
-        $total = 0;
-        foreach ($cart as $item) {
-            $total += $item['price'] * $item['quantity'];
-        }
-        return $total;
-    }
-
-    /**
-     * Contar items en el carrito
-     */
-    private function getCartCount($cart)
-    {
-        $count = 0;
-        foreach ($cart as $item) {
-            $count += $item['quantity'];
-        }
-        return $count;
     }
 }

@@ -217,6 +217,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+// async function submitOrder(e) {
+//     e.preventDefault();
+
+//     const form = document.getElementById('checkoutForm');
+
+//     const body = {
+//         name: form.name.value,
+//         phone: form.phone.value,
+//         address: form.address.value,
+//         notes: form.notes.value
+//     };
+
+//     try {
+//         const res = await fetch('/cart/whatsapp', {
+//             method: 'POST',
+//             credentials: 'same-origin',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'X-CSRF-TOKEN': document
+//                     .querySelector('meta[name="csrf-token"]').content,
+//                 'Accept': 'application/json'
+//             },
+//             body: JSON.stringify(body)
+//         });
+
+//         const data = await res.json();
+
+//         if (data.success) {
+//             window.open(data.whatsapp_url, '_blank');
+
+//             closeModal();   // opcional
+//             clearCart();    // opcional
+//         } else {
+//             alert(data.message);
+//         }
+
+//     } catch (err) {
+//         console.error(err);
+//         alert('Error al generar pedido');
+//     }
+// }
+
 async function submitOrder(e) {
     e.preventDefault();
 
@@ -245,10 +287,24 @@ async function submitOrder(e) {
         const data = await res.json();
 
         if (data.success) {
-            window.open(data.whatsapp_url, '_blank');
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            const isMobile = /Android|iPhone|iPad/.test(navigator.userAgent);
 
-            closeModal();   // opcional
-            clearCart();    // opcional
+            if (isMobile) {
+                // Intenta abrir la app nativa
+                window.location.href = data.whatsapp_app_url;
+
+                // Fallback a wa.me si la app no está instalada
+                setTimeout(() => {
+                    window.location.href = data.whatsapp_url;
+                }, 1500);
+            } else {
+                // Desktop: abre WhatsApp Web en nueva pestaña
+                window.open(data.whatsapp_url, '_blank');
+            }
+
+            closeModal();
+            clearCart();
         } else {
             alert(data.message);
         }

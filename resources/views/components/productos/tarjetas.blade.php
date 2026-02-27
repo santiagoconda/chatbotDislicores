@@ -1,3 +1,330 @@
+<style>
+.container {
+    width: 100%;
+}
+
+.cards-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(350px, 1fr));
+    gap: 40px;
+    perspective: 1000px;
+}
+
+.product-card {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Forma geométrica de fondo inclinada */
+.background-shape {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 100%;
+    border-radius: 30px;
+    transform: skewY(-5deg);
+    overflow: hidden;
+    z-index: 1;
+}
+
+.background-shape::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: -10%;
+    width: 120%;
+    height: 140%;
+    background: inherit;
+}
+
+/* Colores de fondo */
+.card-cyan .background-shape {
+    background: rgba(177, 100, 0, 0.35);
+}
+
+/* Tarjeta blanca principal */
+.card-content {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    width: 85%;
+    height: calc(100% - 40px);
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    padding: 30px 25px 25px;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+}
+
+/* Badges superiores */
+.card-content>.absolute {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+/* Precio en la esquina - MEJORADO */
+.price {
+
+    position: absolute;
+    top: -25px;
+    right: 30px;
+    background: white;
+    color: #333;
+    padding: 12px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.32);
+    z-index: 3;
+    min-width: 140px;
+}
+
+
+
+.price .text-2xl {
+    font-size: 28px;
+    font-weight: 700;
+    /* letter-spacing: -0.5px; */
+}
+
+.price .line-through {
+    font-size: 16px;
+}
+
+.price>div:last-child {
+    margin-top: 6px;
+    font-size: 11px;
+    padding: 4px 10px;
+}
+
+/* Patrón de puntos decorativos a la izquierda */
+.dots-pattern {
+    position: absolute;
+    left: -60px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    z-index: 2;
+}
+
+.dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    opacity: 0.9;
+}
+
+.card-cyan .dot {
+    background: #ff8a5b;
+}
+
+/* Imagen del producto - MEJORADO */
+.product-image-wrapper {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+}
+
+.product-image-wrapper .w-full {
+    height: 200px;
+}
+
+.product-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
+}
+
+/* Contenido del producto - MEJORADO */
+.product-info {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+/* Título - MEJORADO */
+.product-title {
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0;
+    line-height: 1.2;
+}
+
+.product-title-line2 {
+    display: block;
+}
+
+.card-cyan .product-title-line2 {
+    color: #250546;
+}
+
+/* Rating - MEJORADO */
+.product-info>.flex.items-center.gap-3 {
+    justify-content: center;
+    margin-bottom: 8px;
+    padding-bottom: 12px;
+}
+
+.product-info .flex.text-yellow-400 {
+    font-size: 16px;
+    gap: 2px;
+}
+
+.product-info .text-sm.text-gray-500 {
+    font-size: 13px;
+}
+
+/* Tags de características - MEJORADO */
+.product-description {
+    margin: 0;
+}
+
+.product-description .flex.flex-wrap {
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.product-description .flex.flex-wrap>span {
+    font-size: 11px;
+    padding: 6px 12px;
+}
+
+.product-description .flex.flex-wrap svg {
+    width: 12px;
+    height: 12px;
+}
+
+/* Botones - MEJORADO */
+.product-info>.flex.gap-3 {
+    margin-top: 12px;
+    gap: 10px;
+}
+
+.product-info button,
+.product-info a {
+    font-size: 13px;
+    font-weight: 700;
+    padding: 14px 20px;
+    border-radius: 14px;
+}
+
+.product-info button svg,
+.product-info a svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Botón principal más destacado */
+.product-info button:first-child {
+    box-shadow: 0 6px 20px rgba(217, 99, 20, 0.3);
+}
+
+/* Botón secundario */
+.product-info a:last-child {
+    padding: 14px 16px;
+}
+
+/* Responsive - MEJORADO */
+@media (max-width: 768px) {
+    .cards-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .product-card {
+        height: 580px;
+    }
+
+    .price {
+        top: -20px;
+        right: 25px;
+        padding: 10px 16px;
+        min-width: 120px;
+    }
+
+    .price .text-2xl {
+        font-size: 24px;
+    }
+
+    .price .line-through {
+        font-size: 14px;
+    }
+
+    .dots-pattern {
+        left: -50px;
+        gap: 10px;
+    }
+
+    .dot {
+        width: 15px;
+        height: 15px;
+    }
+
+    .product-image-wrapper {
+        margin-top: 45px;
+    }
+
+    .product-image-wrapper .w-full {
+        height: 180px;
+    }
+
+    .product-title {
+        font-size: 18px;
+    }
+
+    .product-info button,
+    .product-info a {
+        font-size: 12px;
+        padding: 12px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-card {
+        height: 560px;
+    }
+
+    .card-content>.absolute {
+        top: 12px;
+        left: 12px;
+    }
+
+    .card-content>.absolute span {
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+
+    .product-description .flex.flex-wrap>span {
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+
+    .product-info .flex.gap-3 {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .product-info a:last-child {
+        padding: 12px 16px;
+    }
+}
+</style>
 
 <div class="container">
     <div class="cards-wrapper">

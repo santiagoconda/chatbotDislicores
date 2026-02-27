@@ -56,7 +56,7 @@ class CategoryController extends Controller
             //         'products' => $products
             //     ]
             // ]);
-            return view('components.categorias', compact('category', 'products'));
+            return view('components.productos.categorias', compact('category', 'products'));
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,

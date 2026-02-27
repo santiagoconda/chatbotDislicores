@@ -317,7 +317,7 @@ class ProductController extends Controller
             //     'success' => true,
             //     'data' => $products
             // ]);
-            return view('components.on-sale', compact('products'));
+            return view('components.productos.ofertas', compact('products'));
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,

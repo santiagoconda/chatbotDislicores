@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\carrito;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class categorias extends Component
+class index extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class categorias extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.categorias');
+        return view('components.carrito.index');
     }
 }

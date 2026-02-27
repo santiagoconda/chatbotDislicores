@@ -1,6 +1,9 @@
     <x-layout.app>
         <!-- <div class="demo-card"> -->
-            <h2 class="logo-text">{{ $category->name }}</h2>
+        <div class="section-header">
+            <h2>{{ $category->name }}</h2>
+            <div class="line"></div>
+        </div>
         <!-- </div> -->
         <div class="features-grid-cards">
             @foreach($products as $product)
